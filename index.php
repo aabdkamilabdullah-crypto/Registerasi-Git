@@ -1,40 +1,34 @@
 <?php
 include 'koneksi.php';
 
-if (isset($_POST['submit'])){
-    $nama = $_POST['nama'];
+if (isset($_POST['submit'])) {
+    $Nama = $_POST['Nama'];
     $email = $_POST['email'];
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
-    $sql = "INSERT INTO tb_users(nama, email, password) VALUE ('$nama','$nama','$password')";
+    $sql = "INSERT INTO tb_users (nama, email, password) VALUES ('nama','$email','$password')";
 
-    if (mysqli_query($koneksi, $sql)){
-        echo "Registerasi berhasil";
-    } else {
-        echo "Error:" . $sql . "<br>" . mysqli_error($koneksi);
-    }
+  $eksekusi = mysqli_query($koneksi, $sql);
 }
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Halaman registerasi</title>
+    <title>Form Registrasi</title>
 </head>
 <body>
-    <div>
-        <h2>Form registerasi</h2>
-        <form action="" method="POST">
-            <label>Nama</label>
-            <input type="text" name="nama" requited><br>
-            <label>Email</label>
-            <input type="text" name="Email" requited><br>
-            <label>Password</label>
-            <input type="text" name="Password" requited><br>
-            <button type="submit">kirim</button>
-        </form>
-    </div>
+    <h2>Registrasi Akun</h2>
+    <form method="POST" action="">
+        <label>Nama</label><br>
+        <input type="text" name="Nama" required><br><br>
+
+        <label>Email:</label><br>
+        <input type="email" name="email" required><br><br>
+
+        <label>Password:</label><br>
+        <input type="password" name="password" required><br><br>
+        <button type="submit" name="submit">kirim</button>
+    </form>
 </body>
 </html>
